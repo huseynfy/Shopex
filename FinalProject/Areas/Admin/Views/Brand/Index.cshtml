@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Brand>
+@{
+    ViewData["Title"] = "Index";
+    int count = 1;
+}
+
+<h2>Brands</h2>
+
+<div><a asp-controller="Brand" asp-action="Create" class="btn btn-primary mb">Add New Brand</a></div>
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Brand Id</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (Brand item in Model)
+        {
+            <tr>
+                <th scope="row">@count</th>
+                <td>@item.Name</td>
+                <td>@item.Id</td>
+                <td>
+                    <button class="btn btn-primary btn-xs">
+                        <a asp-controller="Brand" asp-action="Update" asp-route-id="@item.Id">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </button>
+                    <button class="btn btn-danger btn-xs">
+                        <a asp-controller="Brand" asp-action="Delete" asp-route-id="@item.Id">
+                            <i class="fa fa-trash-o "></i>
+                        </a>
+                    </button>
+                </td>
+            </tr>
+            count++;
+        }
+    </tbody>
+</table>

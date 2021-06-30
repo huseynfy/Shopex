@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Slider>
+@{
+    ViewData["Title"] = "Index";
+    int count = 1;
+}
+
+    <h2>Slider Pictures</h2>
+@if (ViewBag.ImageCount < 3)
+{
+    <div><a asp-controller="Slider" asp-action="Create" class="btn btn-primary mb">Add New Slider Pic</a></div>
+    }
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Image</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (Slider item in Model)
+        {
+            <tr>
+                <th scope="row">@count</th>
+                <td><img src="~/img/@item.Image" width="200px" height="100px" /></td>
+                <td>
+                    <button class="btn btn-primary btn-xs">
+                        <a asp-controller="Slider" asp-action="Update" asp-route-id="@item.Id">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </button>
+                    <button class="btn btn-danger btn-xs">
+                        <a asp-controller="Slider" asp-action="Delete" asp-route-id="@item.Id">
+                            <i class="fa fa-trash-o "></i>
+                        </a>
+                    </button>
+                </td>
+            </tr>
+            count++;
+        }
+    </tbody>
+</table>
+

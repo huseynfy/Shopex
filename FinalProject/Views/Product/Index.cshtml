@@ -1,0 +1,132 @@
+﻿@model HomeVM
+@{
+    ViewData["Title"] = "Index";
+}
+<section style="overflow:hidden;">
+    <div class="container-fluid">
+        <div class="row mt-5 ml-2 mb-5">
+            <div class="col-lg-3 col-md-12 col-sm-12">
+                <div class="collapsible-section">
+                    <h5 class="titleofcollapsible">
+                        Category <i class="fas fa-chevron-down categoryicon"></i>
+                    </h5>
+                    <div class="contentofcollapsible active1">
+                        <ul>
+                            @foreach (Category item in Model.Categories)
+                            {
+                                <li><a asp-controller="Product" asp-action="Index" asp-route-categoryid="@item.Id">
+                                    @item.Name</a></li>
+
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="collapsible-section">
+                    <h5 class="titleofcollapsible">
+                        Brands <i class="fas fa-chevron-down brandsicon"></i>
+                    </h5>
+                    <div class="contentofcollapsible">
+                        <ul>
+                            @foreach (Brand item in Model.Brands)
+                            {
+                                <li><a asp-controller="Product" asp-action="Index" asp-route-brandid="@item.Id">
+                                    <input type="radio" name="brand" value="showall" id="">
+                                    @item.Name</a>
+                            </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="collapsible-section">
+                    <h5 class="titleofcollapsible">
+                        Price <i class="fas fa-chevron-down priceicon"></i>
+                    </h5>
+                    <div class="contentofcollapsible pricerange">
+                        <form method="post">
+                            <label for="pricelow">From</label>
+                            <input type="number" name="pricelow" value="0" id="pricelow">
+                            <label for="pricehigh">To</label>
+                            <input type="number" name="pricehigh" value="1" id="pricehigh">
+                            <button type="submit" style="width:80px;border:none;border-radius:5px;
+                        background-color:#ffc111; color:white; margin-left:125px;">
+                                Sort
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="productheader mt-5">
+                    <h4>Popular Products</h4>
+                    <hr>
+                </div>
+                @foreach (Product item in Model.ProductsMini)
+                {
+                        <div class="productimageanddetail d-flex">
+                            <a asp-controller="Product" asp-action="Detail"
+                               asp-route-id="@item.Id" asp-route-imgid="@item.Image.Id"> 
+                            <img src="~/img/@item.Image.Image1" width="100px" height="100px"></a>
+                            <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id" asp-route-imgid="@item.Image.Id" class="proname">@item.Name</a>
+                        </div>
+                        <div class="productpriceandstars ">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <p>$ @item.Price</p>
+                        </div>
+                }
+
+
+            </div>
+            <div class="col-lg-9 col-md-12 col-sm-12 d-flex flex-wrap">
+                @foreach (Product item in Model.Products)
+                {
+                    <div class="col-lg-3 col-md-12 col-sm-12 mr-5 mb-3 ml-3">
+                        <div class="productbox">
+                            <div class="imageofproductbox">
+                                <a asp-controller="Product" asp-action="Detail" 
+                                   asp-route-id="@item.Id" asp-route-imgid="@item.Image.Id">
+                                <img src="~/img/@item.Image.Image1"></a>
+                            </div>
+                            <span class="producthearticon1"><i class="far fa-heart"></i></span>
+                            <span class="producteyeicon1"><i class="fas fa-eye"></i></span>
+                            <span class="productrefreshicon1"><i class="fas fa-sync"></i></span>
+                            <div class="productboxinfo mt-1">
+                                <p class="categorynameofproduct">@item.Category.Name</p>
+                                <h5>@item.Name</h5>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <div class="productboxstarandprice d-flex mt-2">
+                                    <p>$ @item.Price</p>
+                                    <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item.Id"><i class="fas fa-cart-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+            <div class="col-12 pagination1">
+                <ul class="paginationul d-flex">
+                    @for (int i = 0; i < ViewBag.PageCount; i++)
+                    {
+                        if (i == ViewBag.Page)
+                        {
+                            <li><a class="activepagination paginationa" href="#">@(i + 1)</a></li>
+                        }
+                        else
+                        {
+                            <li><a class="paginationa" href="/Product?page=@i">@(i + 1)</a></li>
+                        }
+                    }
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

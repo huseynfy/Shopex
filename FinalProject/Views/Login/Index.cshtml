@@ -1,0 +1,65 @@
+﻿@model HomeVM
+@{
+    ViewData["Title"] = "Index";
+}
+<section>
+    <div class="container-fluid">
+
+        @if (User.Identity.IsAuthenticated)
+        {
+
+            <div class="col-lg-7 col-md-12 col-sm-12 mt-5">
+                <div>
+                    <h3>Welcome, @User.Identity.Name!</h3>
+                </div>
+                <div class="mt-5">
+                    <p>
+                        Our WebSite offers you unlimited products with unlimited quantity with highest quality!
+                    </p>
+                </div>
+            </div>
+        }
+        else
+        {
+    <div class="row loginregisterbox">
+        <div class="col-lg-6 col-md-12 col-sm-12 ">
+            <div class="logintitle">
+                <h3>Login</h3>
+            </div>
+            <div class="row ml-3">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            </div>
+            <form method="post">
+                <div>
+                    <input type="text" asp-for="Username" id="loginemail" placeholder="Username*">
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div>
+                    <input type="password" asp-for="Password" id="loginpassword" placeholder="Password (required)*">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="mt-4">
+                    <label asp-for="RememberMe">
+                        <input asp-for="RememberMe" /> Remember Me
+                    </label>
+                </div>
+                <button type="submit" class="loginbutton">Log in</button>
+            </form>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="registertitle mb-3">
+                <h3>Register</h3>
+            </div>
+            <h4>Don't Have An Account?</h4>
+            <p class="registrationtext">
+                If You Don't Have Account please, register from here and have an access for unlimited products
+                by only creating a new account. It is safe and your privacy is important for us!
+            </p>
+            <button class="btnregisterhref"><a asp-controller="Login" asp-action="Register">Register Now!</a></button>
+        </div>
+    </div>
+                }
+
+           
+        </div>
+</section>

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Index";
+    int count = 1;
+}
+
+    <h2>Products</h2>
+
+<div><a asp-controller="Product" asp-action="Create" class="btn btn-primary mb">Add New Product</a></div>
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Image</th>
+            <th scope="col">Image Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Brand Name</th>
+            <th scope="col">Brand Id</th>
+            <th scope="col">Category Name</th>
+            <th scope="col">Category Id</th>
+            <th scope="col">Description</th>
+            <th scope="col">Detail</th>
+            <th scope="col">Sale</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (Product item in Model)
+        {
+        <tr>
+            <th scope="row">@count</th>
+            <td><img src="~/img/@item.Image.Image1" width="100px" height="100px" /></td>
+            <td>@item.ImageId</td>
+            <td>@item.Name</td>
+            <td>$@item.Price</td>
+            <td>@item.Brand.Name</td>
+            <td>@item.BrandId</td>
+            <td>@item.Category.Name</td>
+            <td>@item.CategoryId</td>
+            <td>@Html.Raw(item.Description)</td>
+            <td>@Html.Raw(item.Detail)</td>
+            <td>@item.Sale%</td>
+
+            <td>
+                <button class="btn btn-primary btn-xs">
+                    <a asp-controller="Product" asp-action="Update" asp-route-id="@item.Id">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </button>
+                <button class="btn btn-danger btn-xs">
+                    <a asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id">
+                        <i class="fa fa-trash-o "></i>
+                    </a>
+                </button>
+            </td>
+        </tr>
+            count++;
+        }
+    </tbody>
+</table>
+
+

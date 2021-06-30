@@ -1,0 +1,144 @@
+﻿@model  HomeVM
+@{
+    ViewData["Title"] = "Blog";
+}
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            @foreach (Blog item in Model.Blogs.Take(1))
+            {
+                <div class="col-lg-4 col-md-6 col-sm-12 mt-1">
+                    <div class="blogimage">
+                        <img src="~/img/@item.Image" height="250px" width="380px">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 mt-5">
+                    <p id="titleofblognews">@item.Title</p>
+                    <div class="d-flex">
+                        <p class="blogdetails"><i class="far fa-clock blogicons"></i> @item.DateTime.ToShortDateString()</p>
+                        <p class="blogdetails"><i class="fas fa-user blogicons"></i> @item.Commentator</p>
+                        <p class="blogdetails"><i class="fas fa-comments blogicons"></i> @item.Comments comments</p>
+                    </div>
+                    <div>
+                        <p id="bloginfo">
+                            @Html.Raw(item.Description)
+                        </p>
+                    </div>
+                </div>
+            }
+
+            <div class="col-lg-4 col-md-6 col-sm-12 mt-5">
+                <div>
+                    <p class="headinblogsidebar">latest news</p>
+                </div>
+                <div class="d-flex">
+                    <img src="img/blogmini.jpg" width="100px" height="70px">
+                    <p class="textoflatestnews">how to protect ourselves from coronovirus?</p>
+                </div>
+                <div class="d-flex">
+                    <img src="img/blogmini.jpg" width="100px" height="70px">
+                    <p class="textoflatestnews">what is going on over crude oil?</p>
+                </div>
+                <div class="d-flex mt-2">
+                    <img src="img/blogmini.jpg" width="100px" height="70px">
+                    <p class="textoflatestnews">how to avoid financial crisis?</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (Blog item in Model.Blogs.Skip(1).Take(1))
+            {
+                <div class="col-lg-4 col-md-6 col-sm-12 mt-1">
+                    <div class="blogimage">
+                        <img src="~/img/@item.Image" height="250px" width="380px">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 mt-5">
+                    <p id="titleofblognews">@item.Title</p>
+                    <div class="d-flex">
+                        <p class="blogdetails"><i class="far fa-clock blogicons"></i> @item.DateTime.ToShortDateString()</p>
+                        <p class="blogdetails"><i class="fas fa-user blogicons"></i> @item.Commentator</p>
+                        <p class="blogdetails"><i class="fas fa-comments blogicons"></i> @item.Comments comments</p>
+                    </div>
+                    <div>
+                        <p id="bloginfo">
+                            @Html.Raw(item.Description)
+                        </p>
+                    </div>
+                </div>
+            }
+            <div class="col-lg-4 col-md-6 col-sm-12 mt-5">
+                <div>
+                    <p class="headinblogsidebar">text widget</p>
+                </div>
+                <div>
+                    <p id="blogtextwidget">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic praesentium ratione, ipsam quis nostrum quidem cumque animi explicabo aliquid soluta delectus eligendi minima corporis quisquam qui temporibus dolores laborum ullam! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus quasi aut iste fuga sed eius est exercitationem ipsum, nostrum velit. Aperiam ad mollitia accusamus hic dicta sit veritatis cupiditate dolore.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (Blog item in Model.Blogs.Skip(2).Take(1))
+            {
+                <div class="col-lg-4 col-md-6 col-sm-12 mt-1">
+                    <div class="blogimage">
+                        <img src="~/img/@item.Image" height="250px" width="380px">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 mt-5">
+                    <p id="titleofblognews">@item.Title</p>
+                    <div class="d-flex">
+                        <p class="blogdetails"><i class="far fa-clock blogicons"></i> @item.DateTime.ToShortDateString()</p>
+                        <p class="blogdetails"><i class="fas fa-user blogicons"></i> @item.Commentator</p>
+                        <p class="blogdetails"><i class="fas fa-comments blogicons"></i> @item.Comments comments</p>
+                    </div>
+                    <div>
+                        <p id="bloginfo">
+                            @Html.Raw(item.Description)
+                        </p>
+                    </div>
+                </div>
+            }
+            <div class="col-lg-4 col-md-6 col-sm-12 mt-5">
+                <div>
+                    <p class="headinblogsidebar">tags widget</p>
+                </div>
+                <div class="divtagwidgets">
+                    <a href="#" class="blogtagwidget">insurance</a>
+                    <a href="#" class="blogtagwidget">tax plans</a>
+                </div>
+                <div class="divtagwidgets">
+                    <a href="#" class="blogtagwidget">investments</a>
+                    <a href="#" class="blogtagwidget">retirement plans</a>
+                </div>
+
+                <div class="divtagwidgets">
+                    <a href="#" class="blogtagwidget">mutual funds</a>
+                    <a href="#" class="blogtagwidget">business plans</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (Blog item in Model.Blogs.Skip(3))
+            {
+                <div class="col-lg-4 col-md-6 col-sm-12 mt-1">
+                    <div class="blogimage">
+                        <img src="~/img/@item.Image" height="250px" width="380px">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 mt-5 mr-5">
+                    <p id="titleofblognews">@item.Title</p>
+                    <div class="d-flex">
+                        <p class="blogdetails"><i class="far fa-clock blogicons"></i> @item.DateTime.ToShortDateString()</p>
+                        <p class="blogdetails"><i class="fas fa-user blogicons"></i> @item.Commentator</p>
+                        <p class="blogdetails"><i class="fas fa-comments blogicons"></i> @item.Comments comments</p>
+                    </div>
+                    <div>
+                        <p id="bloginfo">
+                            @Html.Raw(item.Description)
+                        </p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

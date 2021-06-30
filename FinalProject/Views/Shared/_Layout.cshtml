@@ -1,0 +1,274 @@
+﻿@model HomeVM
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huseyn</title>
+    <link href="~/img/lion.png" rel="icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container-fluid">
+            <div class="row header">
+                <div class="col-lg-5 col-md-12 col-sm-12 d-flex">
+                    <div class="burgermenu">
+                        <i class="fas fa-align-justify"></i>
+                    </div>
+                    <div class="dropdown-currency">
+                        <button class="btncurrency"> USD <i class="fas fa-caret-down"></i> </button>
+                        <div class="dropdown-currency-content">
+                            <a href="#">USD</a>
+                            <a href="#">AZN</a>
+                        </div>
+                    </div>
+                    <div class="dropdown-languages">
+                        <button class="btnlanguage"><img src="~/img/uk.png" width="20px" height="20px"> English  <i class="fas fa-caret-down"></i></button>
+                        <div class="dropdown-languages-content">
+                            <a href="#"><img src="~/img/azerbaijan.png" width="20px" height="20px"> Azerbaijani</a>
+                            <a href="#"><img src="~/img/turkey.png" width="20px" height="20px"> Turkish</a>
+                            <a href="#"><img src="~/img/russia.png" width="20px" height="20px"> Russian</a>
+                            <a href="#"><img src="~/img/france.png" width="20px" height="20px"> French</a>
+                        </div>
+                    </div>
+                    <a asp-controller="Corona" asp-action="Index"
+                       style="color: red;margin-top: 20px;text-decoration-line: none;">CoronaVirus Info</a>
+                </div>
+                <div class="col-lg-7 col-md-12 col-sm-12 d-flex">
+                    <div class="header-menus">
+                        <div class="header-menu"><a href="#"><i class="far fa-heart"></i> Wishlist</a></div>
+                        <div class="header-menu"><a href="#"><i class="fas fa-retweet"></i> Compare</a></div>
+                        @if (User.Identity.IsAuthenticated)
+                        {<div class="header-menu">
+                                <a asp-controller="Login" asp-action="Index">
+                                    <i class="far fa-user"></i>
+                                    @User.Identity.Name
+                                </a>
+                            </div>
+                            <div class="header-menu">
+                                <a asp-controller="Login" asp-action="Logout">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    Log Out
+                                </a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="header-menu">
+                                <a asp-controller="Login" asp-action="Index">
+                                    <i class="far fa-user"></i>
+                                    Sign In
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="row header2">
+                <div class="col-lg-2 col-md-12 col-sm-12">
+                    <div class="company-name">
+                        <a asp-controller="Home" asp-action="Index">Huseyn</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <form asp-controller="Product" asp-action="Index" method="post">
+                        <input class="search" type="search" name="search" placeholder="Search for something..." aria-label="Search">
+                        <button class="searchbutton">Search</button>
+                    </form>
+                    <div asp-validation-summary="ModelOnly" class="ml-5"></div>
+                </div>
+                <div class="col-lg-2 col-md-12 col-sm-12">
+                    <p class="phone"><i class="fas fa-phone"></i>Hotline:@Model.Contacts.Phone</p>
+                </div>
+                <div class="col-lg-2 col-md-12 col-sm-12 d-flex">
+                    <div class="dropdowncart">
+                        <button class="btncart d-flex">
+                            <a>
+                                <i class="fas fa-shopping-cart"></i>
+                                <sup class="cartsup">@ViewBag.CartCount</sup>
+                                @if (ViewBag.CartCount > 0)
+                                {
+                                    <span class="cartprice">$@ViewBag.PriceCart</span>
+                                }
+                                else
+                                {
+                                    <span class="cartprice">$0</span>
+
+                                }
+                            </a>
+                        </button>
+                        <div class="dropdowncartcontent">
+                            <div class="d-flex justify-content-between checkcartwritings">
+                                <a asp-controller="Cart" asp-action="Index" class="checkcart"> check cart</a>
+                                <p class="checkcart">@ViewBag.CartCount item</p>
+                            </div>
+                            @if (ViewBag.CartCount == 0)
+                            {
+                                <div>
+                                    <p class="ml-5 mt-4" id="emptycart">Your cart is empty</p>
+                                </div>
+                            }
+
+                            @foreach (Cart item in Model.Carts)
+                            {
+                                <div class="d-flex justify-content-between productsincartindex">
+                                    <img src="~/img/@item.ProImage" width="50px" height="50px">
+                                    <span id="productnameincartindex">@item.ProName</span>
+                                    <span id="productpriceincartindex">@item.ProCount X $@item.ProPrice</span>
+                                    <a asp-controller="Cart" asp-action="Delete" asp-route-id="@item.Id" id="deletecartitemindex">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+
+                            }
+                            @if (ViewBag.CartCount > 0)
+                            {
+                                <div class="d-flex justify-content-between">
+                                    <p id="productsubtotalincartindex">subtotal:</p>
+                                    <p id="productsubtotalpriceincartindex">$@ViewBag.PriceCart</p>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row rownavbar">
+                <div class="col-lg-12 col-md-12 col-sm-12 d-flex justify-content-start navbar">
+                    <div class="navbaritem">
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                    </div>
+                    <div class="navbaritem">
+                        <a asp-controller="Product" asp-action="Index">Products</a>
+                    </div>
+                    <div class="dropdownshop">
+                        <button class="btnshop"><a>Shop</a> <i class="fas fa-caret-down"></i></button>
+                        <div class="dropdown-shop-content">
+                            <div class="row1">
+                                <div class="column">
+                                    <h5><a href="">Computers</a> </h5>
+                                    <a href="#">Laptops</a>
+                                    <a href="#">Cables</a>
+                                    <a href="#">Monitors</a>
+                                    <a href="#" id="lastliofshop">Tablets</a>
+                                </div>
+                                <div class="column">
+                                    <h5><a href="">TV & Audio</a> </h5>
+                                    <a href="#">Audio</a>
+                                    <a href="#">DVD</a>
+                                    <a href="#">EarPods</a>
+                                </div>
+                                <div class="column">
+                                    <h5><a href="">Phones</a> </h5>
+                                    <a href="#">Apple</a>
+                                    <a href="#">Smart Phones</a>
+                                    <a href="#">Power Banks</a>
+                                </div>
+                                <div class="column">
+                                    <h5><a href="">Electronics</a> </h5>
+                                    <a href="#">Hair Dryer</a>
+                                    <a href="#">Washing Machines</a>
+                                    <a href="#">Cold Stores</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navbaritem">
+                        <a asp-controller="Blog" asp-action="Index">Blog</a>
+                    </div>
+                    <div class="dropdownpages">
+                        <button class="btnpages"> <a>Pages </a>  <i class="fas fa-caret-down"></i></button>
+                        <div class="dropdown-pages-content">
+                            <a href="#">About Us</a>
+                            <a href="#">FAQ</a>
+                            <a asp-controller="Contact" asp-action="Index">Contact Us</a>
+                            <a href="#">Wishlist</a>
+                            <a href="#">Compare</a>
+                            <a asp-controller="CheckOut" asp-action="Index">Checkout</a>
+                            <a asp-controller="Cart" asp-action="Index">Cart</a>
+                            <a asp-controller="Login" asp-action="Index">My Account</a>
+                        </div>
+                    </div>
+                    <div class="navbaritem">
+                        <a asp-controller="Contact" asp-action="Index">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    @RenderBody()
+    <footer>
+        <div class="elfsight-app-f4c13470-e219-40be-84f4-5d9960efc5d1"></div>
+        <div class="container-fluid">
+            <div class="row mt-5 footerrow">
+                <div class="col-lg-3 col-md-6 col-sm-12 footercompany">
+                    <a asp-controller="Home" asp-action="Index"><p>Huseyn</p></a>
+                    <p style="color: black;">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Corrupti quo iusto, optio provident est, rem voluptas earum impedit debitis iste pariatur quam!
+                    </p>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 footerservices">
+                    <ul>
+                        <li class="lifirstoffooter">Services</li>
+                        <li><a href="#">Hotel Growth</a></li>
+                        <li><a href="#">Hotel Loan</a></li>
+                        <li><a href="#">Financial Planning</a></li>
+                        <li><a href="#">Insurance Consulting</a></li>
+                        <li><a href="#">Retirenment Planning</a></li>
+                        <li><a href="#">Tax Planning</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 subscription">
+                    <p class="subscribetext">Subscribe Newsletter</p>
+                    <p style="color: black;">Get latest updates and offers.</p>
+                    <form asp-controller="Home" asp-action="Index" method="post">
+                        <input type="email" name="email" id="emailinput" placeholder="Enter Your Email...">
+                        <div>
+                            <button class="buttonsubmitemail" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 contactusfooter">
+                    <p class="contactusfootertext">Contact Us</p>
+                    <p style="color: black;"><i class="fas fa-map-marker-alt"></i> @Model.Contacts.Address</p>
+                    <p style="color: black;"><i class="fas fa-mobile-alt"></i> @Model.Contacts.Phone</p>
+                    <p style="color: black;"><i class="fas fa-envelope"></i> @Model.Contacts.Email</p>
+                    <div>
+                        <a href="@Model.Contacts.Facebook"><i class="fab fa-facebook-f footericons"></i></a>
+                        <a href="@Model.Contacts.Instagram"><i class="fab fa-instagram footericons"></i></a>
+                        <a href="@Model.Contacts.Twitter"><i class="fab fa-twitter footericons"></i></a>
+                        <a href="@Model.Contacts.Linkedin"><i class="fab fa-linkedin-in footericons"></i></a>
+                    </div>
+                </div>
+                <div class="backtotop">
+                    <a href="#"> <i class="fas fa-angle-up"> </i></a>
+                </div>
+                <button onclick="myFunction()" class="darkmode">Dark Mode</button>
+            </div>
+        </div>
+
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7~/imgFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+
+    <script src="https://kit.fontawesome.com/1126a3aedb.js" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+    <script src="~/js/script.js"></script>
+</body>
+
+</html>
+@RenderSection("scripts", false)

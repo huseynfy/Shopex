@@ -1,0 +1,43 @@
+﻿@model Contact
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Contact Details</h2>
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Address</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col">Facebook</th>
+            <th scope="col">Instagram</th>
+            <th scope="col">Linkedin</th>
+            <th scope="col">Twitter</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>@Model.Address</td>
+                <td>@Model.Phone</td>
+                <td>@Model.Email</td>
+                <td>@Model.Facebook</td>
+                <td>@Model.Instagram</td>
+                <td>@Model.Linkedin</td>
+                <td>@Model.Twitter</td>
+
+                <td>
+                    <button class="btn btn-primary btn-xs">
+                        <a asp-controller="Contact" asp-action="Update" asp-route-id="@Model.Id">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </button>
+                </td>
+            </tr>
+    </tbody>
+</table>
+
+

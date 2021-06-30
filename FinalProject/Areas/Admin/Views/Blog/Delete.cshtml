@@ -1,0 +1,26 @@
+﻿@model Blog
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete Blog</h2>
+
+<div class="container" style="overflow:hidden;">
+    <div class="row">
+        <div class="col-lg-10">
+            <h4>Image</h4>
+            <img src="~/img/@Model.Image" width="300px" height="200px" />
+            <h3>@Model.Title</h3>
+            <h4>@Model.Commentator</h4>
+            <h3>@Html.Raw(Model.Description)</h3>
+        </div>
+    </div>
+    <div class="row mt ml-5">
+        <form method="post">
+            <button type="submit" class="btn btn-danger ml-5">Delete</button>
+        </form>
+    </div>
+    <div class="row mt ml-5">
+        <a class="btn btn-success" asp-action="Index">Back</a>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+﻿@model HomeVM
+@{
+    ViewData["Title"] = "Index";
+    var message = ViewBag.SuccessMsg;
+}
+<section>
+    <div class="container-fluid">
+        <div class="row contactusrow">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div>
+                    <p class="contactusheader">Contact us</p>
+                </div>
+                <div class="d-flex">
+                    <i class="fas fa-home contactusicons"></i>
+                    <p class="contactuscolumns">address</p>
+                </div>
+                <p class="contactusdetails"> @Model.Contacts.Address</p>
+
+                <div class="d-flex">
+                    <i class="fas fa-phone-alt contactusicons"></i>
+                    <p class="contactuscolumns">phone</p>
+                </div>
+                <p class="contactusdetails"> @Model.Contacts.Phone</p>
+                <div class="d-flex">
+                    <i class="fas fa-at contactusicons"></i>
+                    <p class="contactuscolumns">email</p>
+                </div>
+                <p class="contactusdetails"> @Model.Contacts.Email</p>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+
+                <div>
+                    <p class="contactusheader">Send your message to us</p>
+                </div>
+                <div class="row">
+                    <div asp-validation-summary="ModelOnly" class="text-danger list-unstyled ml-4"></div>
+                </div>
+                <form method="post">
+                    <div>
+                        <input type="text" name="CustomerName" class="inputsincontactus" placeholder="Your name (required)*">
+                        <span class="text-danger field-validation-valid" data-valmsg-for="CustomerName" data-valmsg-replace="true"></span>
+                    </div>
+                    <div>
+                        <input type="email" name="CustomerEmail" class="inputsincontactus" placeholder="Your email (required)*">
+                        <span class="text-danger field-validation-valid" data-valmsg-for="CustomerEmail" data-valmsg-replace="true"></span>
+                    </div>
+                    <div>
+                        <input type="text" name="Subject" class="inputsincontactus" placeholder="Subject*">
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Subject" data-valmsg-replace="true"></span>
+                    </div>
+                    <div>
+                        <textarea name="Post" class="inputsincontactus" placeholder="Post*"></textarea>
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Post" data-valmsg-replace="true"></span>
+                    </div>
+                    <button type="submit" id="btnsend">Send</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+@section scripts{
+    <script type="text/javascript">
+    var message = @message;
+    if(message){
+        alert(message);
+    }
+    </script>
+}

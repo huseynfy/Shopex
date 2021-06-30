@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+    <div class="container mt mr">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <h1>Welcome back, @User.Identity.Name!</h1>
+                <button class="mt mb btn btn-info">
+                    <a asp-area="admin" asp-controller="Product" asp-action="create" style="color:white;font-size:20px;">
+                        Start Adding Products
+                    </a>
+                </button>
+                <li id="header_inbox_bar" class="dropdown" style="list-style-type:none;">
+                    <a data-toggle="dropdown" class="dropdown-toggle">
+                        <i class="fa fa-envelope-o" style="font-size:30px;color:black;"></i>
+                        <sup class="badge bg-theme">@ViewBag.ContactUsCount</sup>
+                    </a>
+                    <ul class="dropdown-menu extended inbox">
+                        <div class="notify-arrow notify-arrow-green"></div>
+                        <li>
+                            <p class="green">You have @ViewBag.ContactUsCount new messages</p>
+                        </li>
+                        @foreach (ContactUs item in Model)
+                        {
+                            <li>
+                                <a asp-controller="contactus" asp-action="index">
+                                    <span class="photo"><img alt="avatar" src="~/img/user.png"></span>
+                                    <span class="subject">
+                                        <span class="from">@item.CustomerName</span>
+                                        <span class="time">@DateTime.Now</span>
+                                    </span>
+                                    <span class="message">
+                                        @item.Subject
+                                    </span>
+                                </a>
+                            </li>
+                        }
+                        <li>
+                            <a asp-controller="contactus" asp-action="index">See all messages</a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 mb">
+                <div class="elfsight-app-4fae0ba0-8867-4e58-a87f-a33b18fa86d4"></div>
+            </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 mt-5">
+                    <div id="calendar" class="mb">
+                        <div class="panel green-panel no-margin">
+                            <div class="panel-body">
+                                <div id="date-popover" class="popover top" style="cursor: pointer; disadding: block; margin-left: 33%; margin-top: -50px; width: 175px;">
+                                    <div class="arrow"></div>
+                                    <h3 class="popover-title" style="disadding: none;"></h3>
+                                    <div id="date-popover-content" class="popover-content"></div>
+                                </div>
+                                <div id="my-calendar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ @section scripts{
+<script src="https://apps.elfsight.com/p/platform.js" defer></script>
+<script src="~/admin/script.js"></script>
+}

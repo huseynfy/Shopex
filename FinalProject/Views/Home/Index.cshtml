@@ -1,0 +1,249 @@
+﻿@model HomeVM
+@{
+    ViewData["Title"] = "Index";
+}
+<section style="overflow: hidden;">
+    <div class="row">
+        <div class="col-12">
+            <div class="slidermain">
+                <i class="fas fa-arrow-right rightmain"></i>
+                <i class="fas fa-arrow-left leftmain"></i>
+                <div class="imagessliderfirstpage">
+                    @foreach (Slider item in Model.Sliders)
+                    {
+                        <div class="itemsliderfirstpage">
+                            <img src="~/img/@item.Image" height="100%" width="100%">
+                        </div>
+                        }
+                    <div class="slidertext">
+                        <p class="slidertexthead">@Model.SliderTexts.Title</p>
+                        <p class="slidertextinfo">@Model.SliderTexts.Description</p>
+                        <button class="btnshopslider"><a asp-controller="Product" asp-action="Index">Shop Now</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section style="overflow: hidden;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-12 mt-5 box boxborderless">
+                <h5> <i class="fas fa-gift iconheader"></i> Bonus Plus</h5>
+                <span>Get a bonus plus for buying more that three products</span>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 mt-5 box boxborderless">
+                <h5> <i class="fas fa-truck iconheader"></i> Free Shipping</h5>
+                <span>Free shipping on all orders over $99</span>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 mt-5 box boxborderless">
+                <h5> <i class="fas fa-dollar-sign iconheader"></i> Money Back Guarantee</h5>
+                <span>100% Money Back Guarantee</span>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 mt-5 box">
+                <h5> <i class="far fa-clock iconheader"></i> Online Support 7/24</h5>
+                <span>Call us:+994502059939</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="overflow: hidden;">
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="productheader">
+                    <h4>Featured Products</h4>
+                    <hr>
+                </div>
+                @foreach (Product item in Model.Products.Take(3))
+                {
+                    <div class="productimageanddetail d-flex">
+                        <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id" asp-route-imgid="@item.Image.Id">
+                        <img src="img/@item.Image.Image1" width="100px" height="100px"></a>
+                        <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id" asp-route-imgid="@item.Image.Id" class="proname">@item.Name</a>
+                    </div>
+                    <div class="productpriceandstars ">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <p>$ @item.Price</p>
+                    </div>
+                }
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="productheader">
+                    <h4>Selected Products</h4>
+                    <hr>
+                </div>
+                @foreach (Product item in Model.Products.Skip(3).Take(3))
+                {
+                    <div class="productimageanddetail d-flex">
+                        <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id" asp-route-imgid="@item.Image.Id">
+                        <img src="img/@item.Image.Image1" width="100px" height="100px"></a>
+                        <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id" asp-route-imgid="@item.Image.Id" class="proname">@item.Name</a>
+                    </div>
+                    <div class="productpriceandstars ">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <p>$ @item.Price</p>
+                    </div>
+                }
+
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="productheader">
+                    <h4>Top Sales</h4>
+                    <hr>
+                </div>
+                @foreach (Product item in Model.Products.Skip(2).Take(3))
+                {
+                    <div class="productimageanddetail d-flex">
+                        <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id" asp-route-imgid="@item.Image.Id">
+                        <img src="img/@item.Image.Image1" width="100px" height="100px"></a>
+                        <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id" asp-route-imgid="@item.Image.Id" class="proname">@item.Name</a>
+                    </div>
+                    <div class="productpriceandstars ">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <p>$ @item.Price</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<section style="overflow: hidden;">
+    <div class="container-fluid">
+        <div class="row mt-5">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="promotedproduct1">
+                    <img src="img/@Model.PromotedProducts.ImageBig" width="600px" height="500px">
+                </div>
+                <p class="textofpromotion">Brand New MacBooks</p>
+                <p class="textofpromotion1"><a asp-controller="Product" asp-action="Index">Shop Now</a></p>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 ">
+                <div class="d-flex">
+                    <div class="promotedproduct2 ">
+                        <img src="img/@Model.PromotedProducts.ImageSmall1" width="300px" height="200px">
+                    </div>
+                    <div class="promotedproduct3">
+                        <img src="img/@Model.PromotedProducts.ImageSmall2" width="300px" height="200px">
+                    </div>
+                </div>
+                <div class="promotedproduct4">
+                    <img src="img/@Model.PromotedProducts.ImageMedium" width="400px" height="300px">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section style="overflow: hidden;">
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-12 d-flex productsfilter">
+                <span class="activefilter productfiltertab" data-index=1><p>Featured Products</p></span>
+                <span class="productfiltertab" data-index="2"><p>Latest Products</p></span>
+                <span class="productfiltertab" data-index="3"><p>On Sale Products</p></span>
+            </div>
+        </div>
+        <div class="row productrow mt-3" data-index="1">
+            @foreach (Product item in Model.Products.Take(4))
+            {
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="productbox">
+                        <div class="imageofproductbox">
+                            <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id" asp-route-imgid="@item.Image.Id">
+                            <img src="~/img/@item.Image.Image1"></a>
+                        </div>
+                        <span class="producthearticon"><i class="far fa-heart"></i></span>
+                        <span class="producteyeicon"><i class="fas fa-eye"></i></span>
+                        <span class="productrefreshicon"><i class="fas fa-sync"></i></span>
+                        <div class="productboxinfo mt-1">
+                            <p class="categorynameofproduct">@item.Category.Name</p>
+                            <h5>@item.Name</h5>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <div class="productboxstarandprice d-flex mt-2">
+                                <p>$ @item.Price</p>
+                                <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item.Id">
+                                <i class="fas fa-cart-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="row productrow mt-3 d-none" data-index="2">
+            @foreach (Product item in Model.Products.Skip(5).Take(2))
+            {
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="productbox">
+                        <div class="imageofproductbox">
+                            <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id" asp-route-imgid="@item.Image.Id">
+                            <img src="img/@item.Image.Image1"></a>
+                        </div>
+                        <span class="producthearticon"><i class="far fa-heart"></i></span>
+                        <span class="producteyeicon"><i class="fas fa-eye"></i></span>
+                        <span class="productrefreshicon"><i class="fas fa-sync"></i></span>
+                        <div class="productboxinfo mt-1">
+                            <p class="categorynameofproduct">@item.Category.Name</p>
+                            <h5>@item.Name</h5>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <div class="productboxstarandprice d-flex mt-2">
+                                <p>$ @item.Price</p>
+                                <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item.Id"><i class="fas fa-cart-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="row productrow mt-3 d-none" data-index="3">
+            @foreach (Product item in Model.Products.Skip(7).Take(1))
+            {
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="productbox">
+                        <div class="imageofproductbox">
+                            <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id" asp-route-imgid="@item.Image.Id">
+                            <img src="img/@item.Image.Image1"></a>
+                        </div>
+                        <span class="producthearticon"><i class="far fa-heart"></i></span>
+                        <span class="producteyeicon"><i class="fas fa-eye"></i></span>
+                        <span class="productrefreshicon"><i class="fas fa-sync"></i></span>
+                        <div class="productboxinfo mt-1">
+                            <p class="categorynameofproduct">@item.Category.Name</p>
+                            <h5>@item.Name</h5>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <div class="productboxstarandprice d-flex mt-2">
+                                <p>$ @item.Price</p>
+                                <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item.Id">
+                                <i class="fas fa-cart-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

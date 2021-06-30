@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Blog>
+@{
+    ViewData["Title"] = "Index";
+    int count = 1;
+}
+
+<h2>Blog News</h2>
+@if (ViewBag.BlogCount < 3)
+{
+    <div><a asp-controller="Blog" asp-action="Create" class="btn btn-primary mb">Add New Blog News</a></div>
+}
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Image</th>
+            <th scope="col">Title</th>
+            <th scope="col">Commentator</th>
+            <th scope="col">Comments</th>
+            <th scope="col">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (Blog item in Model)
+        {
+            <tr>
+                <th scope="row">@count</th>
+                <td><img src="~/img/@item.Image" width="200px" height="100px" /></td>
+                <td>@item.Title</td>
+                <td>@item.Commentator</td>
+                <td>@item.Comments</td>
+                <td>@Html.Raw(item.Description)</td>
+                <td>
+                    <button class="btn btn-primary btn-xs">
+                        <a asp-controller="Blog" asp-action="Update" asp-route-id="@item.Id">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </button>
+                    <button class="btn btn-danger btn-xs">
+                        <a asp-controller="Blog" asp-action="Delete" asp-route-id="@item.Id">
+                            <i class="fa fa-trash-o "></i>
+                        </a>
+                    </button>
+                </td>
+            </tr>
+            count++;
+        }
+    </tbody>
+</table>

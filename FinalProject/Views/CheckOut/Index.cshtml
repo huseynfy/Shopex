@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12 billingcheckout">
+                <div>
+                    <h2 class="titleincheckout">Billing Details</h2>
+                </div>
+                <div>
+                    <input type="text" name="name" placeholder="First name (required)*" class="smallinputs">
+                    <input type="text" name="surname" placeholder="Last name (required)*" id="" class="smallinputs">
+                </div>
+                <div>
+                    <input type="text" name="" class="inputstext" placeholder="Company name (optional)">
+                </div>
+                <div>
+                    <input type="text" name="" class="inputstext" placeholder="Address">
+                </div>
+                <div>
+                    <input type="text" name="" class="inputstext" placeholder="Town/city">
+                </div>
+                <div>
+                    <input type="text" name="" class="smallinputs" placeholder="State/Country (required)*">
+                    <input type="text" name="" class="smallinputs" placeholder="Postcode/Zip (required)*">
+                </div>
+                <div>
+                    <input type="text" name="" class="smallinputs" placeholder="Email address (required)*">
+                    <input type="text" name="" class="smallinputs" placeholder="Phone (required)*">
+                </div>
+                <button type="submit" class="btnsubmit">Submit</button>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 ">
+                <div class="productcheckout">
+                    <div class="checkoutdetail d-flex">
+                        <h5>Product</h5>
+                        <p>Total</p>
+                    </div>
+                    <div class="productsincartcheckout">
+                        <p>There is @ViewBag.CartCount products in cart</p>
+                    </div>
+                    <div class="checkoutsubtotal d-flex">
+                        <h5>Subtotal</h5>
+                        <p>$ @ViewBag.PriceCart</p>
+                    </div>
+                    <div class="checkoutsubtotal d-flex">
+                        <h5>Total</h5>
+                        <p style="margin-left: 328px;">$ @ViewBag.PriceCart</p>
+                    </div>
+                    <div class="radiobuttons">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="customRadio1">Direct Bank Transfer</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="customRadio2">PayPal</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btnorder">Place Order</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

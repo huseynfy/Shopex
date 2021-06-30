@@ -1,0 +1,30 @@
+﻿@model PromotedProduct
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h2>Update</h2>
+
+<div class="container">
+    <div class="row">
+        <h3>Image</h3>
+        <img src="~/img/@Model.ImageMedium" width="400px" height="400px" />
+    </div>
+    <div class="row">
+        <div class="col-lg-11">
+            <form method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label asp-for="PhotoMedium"></label>
+                    <input asp-for="PhotoMedium" class="form-control" accept="image/*">
+                    <span asp-validation-for="PhotoMedium" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="row mt ml">
+        <div class="col-lg-11">
+            <a class="btn btn-success" asp-action="Index">Back</a>
+        </div>
+    </div>
+</div>

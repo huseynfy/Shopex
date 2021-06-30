@@ -1,0 +1,71 @@
+﻿@model HomeVM
+@{
+    ViewData["Title"] = "Index";
+
+}
+@if (ViewBag.CartCount > 0)
+{
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 card-content">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Price</th>
+                                <th scope="col"> Quantity</th>
+                                <th scope="col">Total</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Cart item in Model.Carts)
+                            {
+                                <tr>
+                                    <th scope="row"><img src="~/img/@item.ProImage" width="50px" height="50px"></th>
+                                    <td>@item.ProName</td>
+                                    <td>$@item.ProPrice</td>
+                                    <td>
+                                        <input type="number" id="number" value="@item.ProCount" name="count"/>
+                                    </td>
+                                    <td>$@(item.ProPrice * item.ProCount)</td>
+                                    <td><a asp-controller="Cart" asp-action="Delete" asp-route-id="@item.Id" id="deletecardpro">
+                                        <i class="far fa-trash-alt"></i></a></td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="d-flex bd-highlight mb-3 mt-5">
+                <div class="mr-auto p-2 bd-highlight"><button type="submit" class="btncard"><a asp-controller="Product" asp-action="Index">Continue Shopping</a> </button></div>
+                <div class="p-2 bd-highlight" id="grandtotal">
+                Grand Total:$@ViewBag.PriceCart</div>
+                <div class="p-2 bd-highlight"><button type="submit" class="btncard"><a asp-controller="CheckOut" asp-action="Index">Checkout</a></button></div>
+            </div>
+        </div>
+    </section>
+}
+else
+{
+    <section>
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="emptycard">
+                        <p>you have no items in your shopping cart.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button type="submit" class="btncard1"><a asp-controller="Product" asp-action="Index">Continue Shopping</a> </button>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+

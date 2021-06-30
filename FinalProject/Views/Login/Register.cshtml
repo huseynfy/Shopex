@@ -1,0 +1,65 @@
+﻿@model HomeVM
+@{
+    ViewData["Title"] = "Register";
+}
+<section>
+    <div class="container">
+        <div class="row ">
+
+            <div class="col-lg-6 col-md-12 col-sm-12 registerbox">
+                <div class="registertitleinbox">
+                    <h3>Register</h3>
+                </div>
+                <div class="row ml-3">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                </div>
+                <form method="post">
+                    <div>
+                        <input type="text" asp-for="Name" class="registerinputs" placeholder="Name*">
+                        <br />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <input type="text" asp-for="Surname" class="registerinputs" placeholder="Surname*">
+                        <br />
+                        <span asp-validation-for="Surname" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <input type="text" asp-for="Username" class="registerinputs" placeholder="Username (required)*">
+                        <br />
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <input type="email" asp-for="Email" class="registerinputs" placeholder="Email address (required)*">
+                        <br />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <input type="password" asp-for="Password" class="registerinputs" placeholder="Password*">
+                        <br />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <input type="password" asp-for="ConfirmPassword" class="registerinputs" placeholder="Confirm Password*">
+                        <br />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="registerbutton">Register</button>
+                </form>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="mt-5 mb-3 ml-5">
+                    <h3>Important Information</h3>
+                </div>
+
+                <p class="registrationtext ml-5">
+                    By Registering, you agree that you've read and accepted our User Agreement, you're at least 18 years old, and you consent to our Privacy Notice and receiving marketing communications from us.
+                </p>
+                <p class="registrationtext ml-5">
+                    Your privacy and information are valuable for us and it will safely be protected in our database.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

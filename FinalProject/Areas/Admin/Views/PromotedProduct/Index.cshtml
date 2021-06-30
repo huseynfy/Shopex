@@ -1,0 +1,56 @@
+﻿@model PromotedProduct
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Images</h2>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Image1</th>
+            <th scope="col">Image2</th>
+            <th scope="col">Image3</th>
+            <th scope="col">Image4</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>
+                    <img src="~/img/@Model.ImageBig" width="200px" height="100px" />
+                    <button class="btn btn-warning btn-xs">
+                        <a asp-controller="PromotedProduct" asp-action="Update" asp-route-id="@Model.Id">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </button>
+                </td>
+                <td>
+                    <img src="~/img/@Model.ImageMedium" width="200px" height="100px" />
+                    <button class="btn btn-warning btn-xs">
+                        <a asp-controller="PromotedProduct" asp-action="Update1" asp-route-id="@Model.Id">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </button>
+                </td>
+                <td>
+                    <img src="~/img/@Model.ImageSmall1" width="200px" height="100px" />
+                    <button class="btn btn-warning btn-xs">
+                        <a asp-controller="PromotedProduct" asp-action="Update2" asp-route-id="@Model.Id">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </button>
+                </td>
+                <td>
+                    <img src="~/img/@Model.ImageSmall2" width="200px" height="100px" />
+                    <button class="btn btn-warning btn-xs">
+                        <a asp-controller="PromotedProduct" asp-action="Update3" asp-route-id="@Model.Id">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </button>
+                </td>
+                <td>
+                </td>
+            </tr>
+    </tbody>
+</table>
